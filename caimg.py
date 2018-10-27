@@ -6,8 +6,11 @@ import matplotlib.pyplot as plt
 from pandas import ExcelWriter
 from pandas import ExcelFile
 
+dataFile = 'AITC_Dex_20181026_2_1'
+dataFileFull = 'data/' + dataFile + '.xlsx'
+
 # read excel data
-df = pd.read_excel('data/1_1.xlsx')
+df = pd.read_excel(dataFileFull)
 
 # find timestamp
 expTime = df.iloc[0,0]
@@ -40,5 +43,23 @@ dfPlot = dfRatio.loc[:,good]
 
 # plotting
 fig, ax = plt.subplots()
-ax.plot(dfRatio['Time (sec)'], dfPlot.iloc[:,1:])
+# colors = ("red","green","blue","orange")
+# colors = ['b','g','r','c','m','y','k']
+
+prop_cycle = plt.rcParams['axes.prop_cycle']
+colors = prop_cycle.by_key()['color']
+
+
+for data, color, group in zip(dfPlot.iloc[:,1:], colors, list(dfPlot.columns[1:])):
+    print(dfPlot[data])
+    ax.plot(dfRatio['Time (sec)'], dfPlot[data], c=color, label=group)
+
+
+# ax.plot(dfRatio['Time (sec)'], dfPlot.iloc[:,1:], label = ['a','b','c'])
+# ax.legend(['test'])
+# ax.legend(['hi'], ncol=3)
+ax.legend()
+plt.title(expTime)
 plt.show()
+
+fig.savefig('data/'+dataFile)
