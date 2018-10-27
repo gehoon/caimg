@@ -1,6 +1,7 @@
 import pandas as pd
 import re
 import numpy as np
+from scipy import stats
 import matplotlib.pyplot as plt
 from pandas import ExcelWriter
 from pandas import ExcelFile
@@ -29,16 +30,15 @@ dfRatio = pd.concat([df.loc[:,'Time (sec)'],dfW1 / dfW2], axis=1)
 drugs = df.loc[df.iloc[:,3].isna()].iloc[:,0:2]
 # dfNum = df.loc[~df.iloc[:,3].isna()]
 
-ctr1 = dfRatio.iloc[30:35,:].mean()
+# filter by thresRatio
+ctr1 = dfRatio.iloc[0:drugs.index[0],:].mean()
+drug1 = dfRatio.iloc[drugs.index[0]:drugs.index[1],:].max()
 
-df.iloc[drugs.index[0]-3:drugs.index[0]+4,:]
-df.iloc[125-3:125+4,:]
-
-drugRow1 = (df.loc[:,'Time (sec)'] - drug1).abs().argsort().iloc[0]
-drugRow1 = (df.loc[:,'Time (sec)'] - drugs).abs().argsort().iloc[0]
-min((df.loc[:,'Time (sec)'] - drug1).abs().index)
-
+thresRatio = 1.05
+good = (drug1 / ctr1) > thresRatio
+dfPlot = dfRatio.loc[:,good]
 
 # plotting
 fig, ax = plt.subplots()
-ax.plot(dfRatio)
+ax.plot(dfRatio['Time (sec)'], dfPlot.iloc[:,1:])
+plt.show()
