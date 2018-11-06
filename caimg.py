@@ -94,7 +94,7 @@ dataFile = [
     'AITC_Dex_20181026_1_1', 'AITC_Dex_20181026_1_2', 'AITC_Dex_20181026_2_1']
 
 # dataFile = 'data/AITC_Dex_20181026_2_1.xlsx'
-# dataFile = ['AITC_Dex_20181026_2_1']
+dataFile = ['AITC_Dex_20181029_1_1','AITC_Dex_20181029_1_2']
 for thisFile in dataFile: drawpic('data/' + thisFile + '.xlsx')
 
 
