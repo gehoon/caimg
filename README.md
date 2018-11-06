@@ -10,8 +10,7 @@ drawpic(fileName + '.xlsx')
 ```
 
 ## Experiment.m for MatLab
-dormant state (waiting for further development)
- * last update: May, 2016
+dormant state (last update: May, 2016)
 
 Usage:
 ```Matlab
