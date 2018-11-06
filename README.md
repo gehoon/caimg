@@ -4,13 +4,21 @@ for MetaFluor data analysis
 ## caimg.py for python
 still under active development
 
+Usage:
+```Python
+drawpic(fileName + '.xlsx')
+```
+
 ## Experiment.m for MatLab
 dormant state (waiting for further development)
  * last update: May, 2016
 
 Usage:
 ```Matlab
-exp = Experiment(filename, sheetname);
+[~, sheets] = xlsfinfo(char(fileName));
+sheetName = sheets(1)
+
+exp = Experiment(fileName, sheetName);
 exp = exp.normalize();
 h = exp.plot();  
 ```
