@@ -41,7 +41,7 @@ def drawpic(dataFile):
     drugs = df.loc[df.iloc[:,3].isna()].iloc[:,0:2].reset_index(drop=True)
     i = 0
     while i < len(drugs):
-        if drugs.iloc[i, 1] == drugs.iloc[i + 1, 1] and drugs.iloc[i+1, 0] - drugs.iloc[i, 0] < 30:
+        if drugs.iloc[i, 1] == drugs.iloc[i + 1, 1] and drugs.iloc[i+1, 0] - drugs.iloc[i, 0] < 150:
             i = i + 2
         else:
             drugs.loc['9999'] = [drugs.iloc[i, 0] + 15, drugs.iloc[i, 1]]
@@ -93,8 +93,14 @@ dataFile = [
     'AITC_Dex_20181024_1_1', 'AITC_Dex_20181024_1_2', 'AITC_Dex_20181024_2_1', 'AITC_Dex_20181024_2_2', 'AITC_Dex_20181024_3_1',
     'AITC_Dex_20181026_1_1', 'AITC_Dex_20181026_1_2', 'AITC_Dex_20181026_2_1']
 
-# dataFile = 'data/AITC_Dex_20181026_2_1.xlsx'
 dataFile = ['AITC_Dex_20181029_1_1','AITC_Dex_20181029_1_2']
+
+dataFile = [
+    'AITC_20181102_1_1', 'AITC_20181102_1_2', 'AITC_20181102_2_1', 'AITC_20181102_2_2',
+    'AITC_20181106_1_1', 'AITC_20181106_1_2', 'AITC_20181106_2_1', 'AITC_20181106_2_2', 'AITC_20181106_2_3',
+    'AITC_20181108_1_1', 'AITC_20181108_1_2', 'AITC_20181108_1_3',
+    'AITC_Dex_20181109_1_1', 'AITC_Dex_20181109_1_2', 'AITC_Dex_20181109_2_1', 'AITC_Dex_20181109_2_2']
+
 for thisFile in dataFile: drawpic('data/' + thisFile + '.xlsx')
 
 
